@@ -2,7 +2,7 @@ import sys
 
 def maze(file_path):
 	'''
-	Day 5 | Part 1
+	Day 5 | Part 2
 	Finds the number of steps needed to escape a 'maze'.
 
 	The task: http://adventofcode.com/2017/day/5
@@ -26,13 +26,19 @@ def maze(file_path):
 				if new_location < 0 or new_location > len(li):
 					break
 				else:
-					li[i] += 1
-					i = new_location
-					steps += 1
+					if li[i] >= 3:
+						li[i] -= 1
+						i = new_location
+						steps += 1
+					else:
+						li[i] += 1
+						i = new_location
+						steps += 1
 
 
 	with open('output', 'w') as f:
 		f.write(str(steps))
+
 
 if __name__ == '__main__':
 	maze(sys.argv[-1])
